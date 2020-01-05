@@ -1,0 +1,22 @@
+#version 400 core
+
+in vec2 TC;
+in float hTrans;
+
+uniform sampler2D textureSampler;
+
+out vec4 out_Color;
+
+void main(void) 
+{
+	vec4 textureColor = texture(textureSampler, TC);
+	if( textureColor.a == 0)
+	{
+		discard;
+	}
+	if( hTrans == 1)
+	{
+		textureColor.a = 0.3;
+	}	
+	out_Color = textureColor;
+}
